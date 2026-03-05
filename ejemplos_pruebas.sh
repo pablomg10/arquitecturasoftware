@@ -1,6 +1,3 @@
-# Ejemplos de pruebas para los endpoints del taller de coches
-# Ejecutar estos comandos desde la terminal o usar Postman
-
 ## 1. REGISTRAR CLIENTE
 curl -X POST http://127.0.0.1:8000/gestion/clientes/registrar/ \
     -H "Content-Type: application/json" \
