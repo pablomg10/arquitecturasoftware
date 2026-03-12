@@ -20,5 +20,5 @@ urlpatterns = [
     path('buscar/clientes/<int:cliente_id>/', buscar_cliente, name='buscar_cliente'),
     path('buscar/coches/matricula/<str:matricula>/', buscar_coche_por_matricula, name='buscar_coche_por_matricula'),
     path('buscar/clientes/<int:cliente_id>/coches/', buscar_coches_de_cliente, name='buscar_coches_de_cliente'),
-    path('buscar/coches/<int:coche_id>/servicios/', buscar_servicios_de_coche, name='buscar_servicios_de_coche'),
+    path('coches/<int:coche_id>/servicios/', buscar_servicios_de_coche, name='buscar_servicios_de_coche'),
 ]

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ cliente.nombre }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .coche {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ cliente.nombre }}</h1>
+    
+    <div class="info">
+        <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
+        <p><strong>Email:</strong> {{ cliente.email }}</p>
+    </div>
+
+    <h2>Coches</h2>
+    
+    {% if coches %}
+        {% for coche in coches %}
+        <div class="coche">
+            <p><strong>{{ coche.marca }} {{ coche.modelo }}</strong></p>
+            <p>Matrícula: {{ coche.matricula }}</p>
+            <p><a href="{% url 'buscar_servicios_de_coche' coche.id %}">Ver servicios</a></p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No tiene coches registrados.</p>
+    {% endif %}
+
+    <p><a href="{% url 'lista_clientes' %}">← Volver</a></p>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Servicios - {{ coche.marca }} {{ coche.modelo }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .servicio {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Servicios del Coche</h1>
+    
+    <div class="info">
+        <p><strong>Propietario:</strong> <a href="{% url 'detalle_cliente' coche.cliente.id %}">{{ coche.cliente.nombre }}</a></p>
+        <p><strong>Coche:</strong> {{ coche.marca }} {{ coche.modelo }}</p>
+        <p><strong>Matrícula:</strong> {{ coche.matricula }}</p>
+    </div>
+
+    <h2>Historial de Servicios</h2>
+    
+    {% if coche_servicios %}
+        {% for coche_servicio in coche_servicios %}
+        <div class="servicio">
+            <p><strong>{{ coche_servicio.servicio.nombre }}</strong></p>
+            <p>{{ coche_servicio.servicio.descripcion }}</p>
+            <p><em>Fecha: {{ coche_servicio.fecha|date:"d/m/Y H:i" }}</em></p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay servicios registrados para este coche.</p>
+    {% endif %}
+
+    <p><a href="{% url 'detalle_cliente' coche.cliente.id %}">← Volver al cliente</a></p>
+</body>
+</html>

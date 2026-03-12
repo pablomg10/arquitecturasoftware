@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Clientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .cliente {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clientes</h1>
+    
+    {% if clientes %}
+        {% for cliente in clientes %}
+        <div class="cliente">
+            <h3><a href="{% url 'detalle_cliente' cliente.id %}">{{ cliente.nombre }}</a></h3>
+            <p>Teléfono: {{ cliente.telefono }}</p>
+            <p>Email: {{ cliente.email }}</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay clientes registrados.</p>
+    {% endif %}
+</body>
+</html>
