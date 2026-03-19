@@ -1,0 +1,16 @@
+{% extends 'app_gestion_coches/base.html' %}
+{% block titulo %}Lista de Servicios{% endblock %}
+{% block contenido %}
+    <h1>Lista de Servicios</h1>
+    <p><a href="{% url 'nuevo_servicio' %}" class="btn">Añadir nuevo servicio</a></p>
+    {% if servicios %}
+        {% for servicio in servicios %}
+            <div class="item-list">
+                <p><strong>{{ servicio.nombre }}</strong></p>
+                <p>{{ servicio.descripcion }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay servicios registrados.</p>
+    {% endif %}
+{% endblock %}

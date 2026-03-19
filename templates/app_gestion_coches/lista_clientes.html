@@ -1,35 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Clientes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        .cliente {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        a {
-            color: blue;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
+{% extends 'app_gestion_coches/base.html' %}
+{% block titulo %}Lista de Clientes{% endblock %}
+{% block contenido %}
     <h1>Clientes</h1>
+    <p><a href="{% url 'nuevo_cliente' %}" class="btn">Añadir nuevo cliente</a></p>
     
     {% if clientes %}
         {% for cliente in clientes %}
-        <div class="cliente">
+        <div class="item-list">
             <h3><a href="{% url 'detalle_cliente' cliente.id %}">{{ cliente.nombre }}</a></h3>
             <p>Teléfono: {{ cliente.telefono }}</p>
             <p>Email: {{ cliente.email }}</p>
@@ -38,5 +15,4 @@
     {% else %}
         <p>No hay clientes registrados.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}

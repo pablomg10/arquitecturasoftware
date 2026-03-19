@@ -1,39 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Servicios - {{ coche.marca }} {{ coche.modelo }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        .info {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border: 1px solid #ddd;
-            margin: 10px 0;
-        }
-        .servicio {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        a {
-            color: blue;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
+{% extends 'app_gestion_coches/base.html' %}
+{% block titulo %}Servicios - {{ coche.marca }} {{ coche.modelo }}{% endblock %}
+{% block contenido %}
     <h1>Servicios del Coche</h1>
     
-    <div class="info">
+    <div class="item-list" style="background-color: #f9f9f9;">
         <p><strong>Propietario:</strong> <a href="{% url 'detalle_cliente' coche.cliente.id %}">{{ coche.cliente.nombre }}</a></p>
         <p><strong>Coche:</strong> {{ coche.marca }} {{ coche.modelo }}</p>
         <p><strong>Matrícula:</strong> {{ coche.matricula }}</p>
@@ -43,10 +13,10 @@
     
     {% if coche_servicios %}
         {% for coche_servicio in coche_servicios %}
-        <div class="servicio">
+        <div class="item-list">
             <p><strong>{{ coche_servicio.servicio.nombre }}</strong></p>
             <p>{{ coche_servicio.servicio.descripcion }}</p>
-            <p><em>Fecha: {{ coche_servicio.fecha|date:"d/m/Y H:i" }}</em></p>
+            <p><em>Fecha: {{ coche_servicio.fecha|date:"d/m/Y" }}</em></p>
         </div>
         {% endfor %}
     {% else %}
@@ -54,5 +24,4 @@
     {% endif %}
 
     <p><a href="{% url 'detalle_cliente' coche.cliente.id %}">← Volver al cliente</a></p>
-</body>
-</html>
+{% endblock %}

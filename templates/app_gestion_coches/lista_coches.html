@@ -1,0 +1,18 @@
+{% extends 'app_gestion_coches/base.html' %}
+{% block titulo %}Lista de Coches{% endblock %}
+{% block contenido %}
+    <h1>Lista de Coches</h1>
+    <p><a href="{% url 'nuevo_coche' %}" class="btn">Añadir nuevo coche</a></p>
+    {% if coches %}
+        {% for coche in coches %}
+            <div class="item-list">
+                <p><strong>{{ coche.marca }} {{ coche.modelo }}</strong></p>
+                <p>Matrícula: {{ coche.matricula }}</p>
+                <p>Propiedad de: <a href="{% url 'detalle_cliente' coche.cliente.id %}">{{ coche.cliente.nombre }}</a></p>
+                <p><a href="{% url 'buscar_servicios_de_coche' coche.id %}" class="btn">Ver servicios</a></p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay coches registrados.</p>
+    {% endif %}
+{% endblock %}
